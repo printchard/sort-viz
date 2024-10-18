@@ -1,7 +1,7 @@
 #ifndef SORT_H
 #define SORT_H
 
-#define RECT_NUM 101
+#define RECT_NUM 10
 
 typedef enum
 {
