@@ -7,7 +7,6 @@
 
 #define SCREEN_WIDTH 1200
 #define SCREEN_HEIGHT 800
-#define RECT_NUM 100
 #define RECT_HEIGHT 800 - Y_PADDING * 2
 #define X_PADDING 50
 #define Y_PADDING 20
