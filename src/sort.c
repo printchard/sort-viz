@@ -4,7 +4,7 @@
 
 Move m[RECT_NUM * RECT_NUM];
 
-void bubbleSort(int *nums, int length)
+int bubbleSort(int *nums, int length)
 {
   int step = 0;
   for (int i = 0; i < length - 1; i++)
@@ -26,4 +26,9 @@ void bubbleSort(int *nums, int length)
       }
     }
   }
+  step++;
+  m[step].i = -1;
+  m[step].j = -1;
+  m[step].t = -1;
+  return step;
 }

@@ -42,7 +42,7 @@ int main()
   fillRandomArray(hs, RECT_NUM);
   copyArr(hs, rs, RECT_NUM);
 
-  bubbleSort(hs, RECT_NUM);
+  int steps = bubbleSort(hs, RECT_NUM);
 
   int time = 0;
   int currStep = 0;
@@ -55,7 +55,7 @@ int main()
     EndDrawing();
     if (time == 30)
     {
-      if (currStep < RECT_NUM * RECT_NUM)
+      if (currStep < steps)
         currStep++;
       if (m[currStep].t == SWAP)
         swap(rs, m[currStep].i, m[currStep].j);
