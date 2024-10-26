@@ -2,16 +2,10 @@
 #include <time.h>
 #include <stdlib.h>
 #include <stdio.h>
-#include <unistd.h>
 #include <string.h>
+#include "main.h"
 #include "sort.h"
 #include "util.h"
-
-#define SCREEN_WIDTH 1200
-#define SCREEN_HEIGHT 800
-#define RECT_HEIGHT 800 - Y_PADDING * 2
-#define X_PADDING 50
-#define Y_PADDING 20
 
 void fillRandomArray(int *vs, int num)
 {
@@ -20,7 +14,7 @@ void fillRandomArray(int *vs, int num)
     vs[i] = i + 1;
   }
 
-  for (int i = num; i > 0; i--)
+  for (int i = num - 1; i > 0; i--)
   {
     int j = rand() % (i + 1);
     swap(vs, i, j);
@@ -37,7 +31,10 @@ void drawRectangles(int *heights, Move m, int num, int h)
     float y = SCREEN_HEIGHT - height - Y_PADDING;
     if (m.i == i || m.j == i)
     {
-      DrawRectangle(x, y, width, height, RED);
+      if (m.t == SWAP)
+        DrawRectangle(x, y, width, height, BLUE);
+      else
+        DrawRectangle(x, y, width, height, RED);
     }
     else
     {
@@ -70,16 +67,13 @@ int main()
     ClearBackground(WHITE);
     drawRectangles(rs, m[currStep], RECT_NUM, RECT_HEIGHT);
     EndDrawing();
-    if (time % 120)
+    if (time == 30)
     {
-      if (m[currStep].t == SWAP)
-      {
-        int temp = rs[m[currStep].i];
-        rs[m[currStep].i] = rs[m[currStep].j];
-        rs[m[currStep].j] = temp;
-      }
       if (currStep < RECT_NUM * RECT_NUM)
         currStep++;
+      if (m[currStep].t == SWAP)
+        swap(rs, m[currStep].i, m[currStep].j);
+      time = 0;
     }
     time++;
   }
